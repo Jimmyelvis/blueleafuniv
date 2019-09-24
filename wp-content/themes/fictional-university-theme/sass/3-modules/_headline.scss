@@ -1,0 +1,82 @@
+.headline {
+  margin: 0;
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: bold;
+}
+
+.headline--large {
+  font-size: 8rem;
+  letter-spacing: 5px;
+
+ 
+  @media(max-width: 1280px){
+    font-size: 7rem;
+    letter-spacing: 3px;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 5rem;
+    width: 75%;
+    margin: 0 auto;
+  }
+
+  @media(max-width:450px){
+    width: 100%;
+    font-size: 4rem;
+  }
+
+
+}
+
+.headline--large-medium {
+  font-size: 5rem;
+  margin: 0 0 1rem 0;
+}
+
+.headline--medium {
+  font-size: 1.9rem;
+  margin-bottom: .75rem;
+  @media (min-width: 530px) {
+    font-size: 3.125rem;
+  }
+}
+
+.headline--blueleaftxt {
+  color: #5bb2ff;
+}
+
+.headline--small-plus {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.6875rem;
+  font-weight: 400;
+  margin-bottom: 1.9rem;
+}
+
+.headline--small {
+  font-size: 1.2rem;
+  margin-bottom: 1.9rem;
+  @media (min-width: 530px) {
+    font-size: 1.6875rem;
+  }
+}
+
+.headline--smaller {
+  font-size: 1.5rem;
+}
+
+.headline--tiny {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.3875rem;
+  margin-bottom: .25rem;
+}
+
+.headline--post-title a {
+  color: $univDarkBlue;
+  text-decoration: none;
+}
+
+.headline--post-title a:hover {
+  text-decoration: underline;
+}

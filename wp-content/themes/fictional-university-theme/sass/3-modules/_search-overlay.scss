@@ -1,0 +1,138 @@
+.search-overlay {
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 110;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, .96);
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(1.09);
+  transition: opacity .3s, transform .3s, visibility .3s;
+  box-sizing: border-box;
+
+  p {
+    padding-top: 15px;
+  }
+
+  .event-summary p {
+    padding-top: 0;
+  }
+
+  .event-summary {
+    margin-bottom: 0;
+    margin-top: 20px;
+  }
+
+  .event-summary__date {
+    text-decoration: none;
+    display: block;
+    top: 0;
+    left: 0;
+    padding: 14px 0 11px 0;
+    color: #FFF;
+    background-color: #5eafff;
+    width: 80px;
+    line-height: 1;
+    transition: opacity .33s;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.22);
+    float: left;
+    margin-right: 5%;
+  }
+
+  .professor-card {
+    width: 160px;
+  }
+
+  .program-card-search {
+    width: 160px;
+  }
+
+  body.admin-bar & {
+    top: 32px;
+  }
+
+  &__top {
+    background-color:$babyBlue;
+  }
+
+  &__icon {
+    margin-right: 10px;
+    font-size: 1.8rem;
+    color: #fff;
+    @media (min-width: 960px) {
+      font-size: 2.5rem;
+    }
+  }
+
+  &--active {
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  &__section-title {
+    margin: 30px 0 1px 0;
+    font-weight: bold;
+    color: $univDarkBlue;
+    font-size: 2rem;
+    padding: 15px 0;
+    border-bottom: 1px solid #CCC;
+  }
+
+  &__close {
+    position: absolute;
+    top: 13px;
+    right: 16px;
+    font-size: 2.1rem;
+    cursor: pointer;
+    transition: all .3s;
+    background-color: $mainYellow;
+    color: #fff;
+    line-height: .7;
+    @media (min-width: 530px) {
+      top: 18px;
+      font-size: 2.1rem;
+    }
+    @media (min-width: 960px) {
+      top: 26px;
+      font-size: 2.8rem;
+    }
+  }
+
+  &__close:hover {
+    opacity: 1;
+  }
+
+  .one-half {
+    padding-bottom: 0;
+  }
+}
+
+.search-term {
+  width: 75%;
+  box-sizing: border-box;
+  border: none;
+  padding: 15px 0;
+  margin: 0;
+  background-color: transparent;
+  font-size: 1rem;
+  font-weight: 300;
+  outline: none;
+  color: #fff;
+  @media (min-width: 530px) {
+    font-size: 1.5rem
+  }
+  @media (min-width: 960px) {
+    width: 80%;
+    font-size: 3rem;
+  }
+
+}
+
+.body-no-scroll {
+  overflow: hidden;
+}

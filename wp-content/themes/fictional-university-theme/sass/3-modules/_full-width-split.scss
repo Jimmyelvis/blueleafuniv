@@ -1,0 +1,41 @@
+.full-width-split {
+
+
+  @media (min-width: 530px) {
+    display: flex;
+  }
+
+
+}
+
+.full-width-split__one {
+  flex: 1;
+  padding: 1.6rem 16px;
+
+  @mixin atMedium {
+    padding: 40px;
+  }
+
+  .full-width-split__inner {
+    @media (min-width: 960px) {
+      float: right;
+    }
+  }
+}
+
+.full-width-split__two {
+  flex: 1;
+  background-color: $beige;
+  padding: 1.6rem 16px;
+
+  @media (min-width: 960px) {
+    padding: 40px;
+  }
+}
+
+.full-width-split__inner {
+
+  @media (min-width: 1350px) {
+    width: 610px;
+  }
+}

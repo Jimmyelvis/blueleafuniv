@@ -1,0 +1,39 @@
+.aboutUs{
+    position: relative;
+    padding: 60px 0;
+    background-color: #193b78;
+    color: #fff;
+    background-attachment: fixed;
+    background-size: cover;
+
+  h3 {
+    @include sectionHeadings($babyBlue);
+
+  }
+
+  h3:after {
+      content: "";
+      display: block;
+      margin: 0 auto;
+      width: 25%;
+      padding-top: 13px;
+      border-bottom: 1px solid $univGold;
+  }
+  
+
+
+  p {
+    margin: 35px auto 0 auto;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+
+  @media(max-width:1280px){
+    
+    p{
+      width: 80%;
+    }
+    
+  }
+
+}

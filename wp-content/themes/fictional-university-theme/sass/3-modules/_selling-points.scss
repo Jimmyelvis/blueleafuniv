@@ -1,0 +1,52 @@
+.selling-point {
+    display: flex;
+    width: 60%;
+    margin: -125px auto 100px auto;
+    text-align: center;
+    z-index: 100;
+    position: relative;
+    color:#fff;
+
+    h3{
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 1280px){
+      width: 70%;
+    }
+
+    @media (max-width:990px){
+      width: 90%;
+    }
+
+     @media (max-width: 767px) {
+      width: 100%;
+      font-size: 1rem;
+      display: block;
+      margin: 0 auto 100px auto;
+    }
+
+    p {
+
+      @media(max-width:767px) {
+        width: 70%;
+        margin: 0 auto;
+      }
+
+    }
+}
+
+.selling-point__one {
+  background-color: $univGold;
+  padding: 25px 25px;
+}
+
+.selling-point__two {
+  background-color: $babyBlue;
+  padding: 25px 25px;
+}
+
+.selling-point__three {
+  background-color: $univDarkBlue;
+  padding: 25px 25px;
+}

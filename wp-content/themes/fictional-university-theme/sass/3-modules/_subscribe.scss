@@ -1,0 +1,97 @@
+.subscribe{
+  background: rgba(146,211,255,1);
+  background: -moz-linear-gradient(top, rgba(146,211,255,1) 0%, rgba(78,167,255,1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(146,211,255,1)), color-stop(100%, rgba(78,167,255,1)));
+  background: -webkit-linear-gradient(top, rgba(146,211,255,1) 0%, rgba(78,167,255,1) 100%);
+  background: -o-linear-gradient(top, rgba(146,211,255,1) 0%, rgba(78,167,255,1) 100%);
+  background: -ms-linear-gradient(top, rgba(146,211,255,1) 0%, rgba(78,167,255,1) 100%);
+  background: linear-gradient(to bottom, rgba(146,211,255,1) 0%, rgba(78,167,255,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#92d3ff', endColorstr='#4ea7ff', GradientType=0 );
+
+  .container{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 15px 0;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+
+    @media(max-width:990px){
+      display: block;
+    }
+  }
+
+  .subscribemsg {
+    padding: 10px 0;
+
+    @media(max-width:990px){
+      padding: 10px 0;
+      margin: 0 auto;
+      display: block;
+      text-align: center;
+    }
+  }
+
+  .subscribeInput {
+    padding: 12px 0;
+    width: 45%;
+
+    @media (max-width:990px) {
+      width: 65%;
+      margin: 0 auto;
+      display: block;
+    }
+
+    @media (max-width:500px) {
+      width: 85%;
+    }
+  }
+
+  form {
+    display: flex;
+  }
+
+  .subscribeform {
+    padding: 4px 10px 0 10px;
+    border-radius: 5px;
+    font-family: 'Bebas Neue';
+    font-weight: bold;
+    letter-spacing: 2px;
+    border-style: none;
+    border-color: #fff;
+    border-image: none;
+    -webkit-box-shadow: inset 0px 0px 5px 0px rgba(185,189,212,0.4);
+    -moz-box-shadow: inset 0px 0px 5px 0px rgba(185,189,212,0.4);
+    box-shadow: inset 3px 3px 3px 0px rgba(185, 189, 212, 0.87);
+    height: 36px;
+    width: 75%;
+    color: $univDarkBlue;
+
+    @media (max-width:990px) {
+      width: 100%;
+    }
+  }
+
+  .subscribeform::placeholder {
+    color: #97aed7;
+  }
+
+  p {
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: 'Bebas Neue';
+    letter-spacing: 1px;
+    font-size: 1.7rem;
+    margin: 0;
+
+    @media (max-width:767px) {
+      font-size: 1.5rem;
+    }
+
+    @media (max-width:500px) {
+      font-size: 1.3rem;
+    }
+  }
+
+}

@@ -1,0 +1,34 @@
+@mixin atSmall {
+  @media (min-width: 530px) {
+    @content;
+  }
+}
+
+@mixin atSmallMedium {
+  @media (min-width: 767px) {
+    @content;
+  }
+}
+
+@mixin atMedium {
+  @media (min-width: 960px) {
+    @content;
+  }
+}
+
+@mixin sectionHeadings( $color ) {
+  font-size: 4rem;
+  text-align: center;
+  color: $color;
+  margin: 0;
+  margin-bottom: 40px;
+
+  @media (max-width:767px) {
+    font-size:3rem;
+  }
+
+  @media (max-width:450px) {
+    font-size:2.7rem;
+  }
+
+}
