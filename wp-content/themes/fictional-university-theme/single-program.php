@@ -32,8 +32,17 @@
             <?php the_field('main_body_content'); ?>
           </div>
 
+          
+          
+          <?php 
+          
+          /*
+            Query the database for professors that are related to this program, 
+            use a meta query which will filter for professors that has a key of ('related_programs')
+            that matches the ID of the current program page that we are on.
 
-        <?php 
+            Assign the results to $relatedProfessors variable
+          */
 
           $relatedProfessors = new WP_Query(array(
             'posts_per_page' => -1,
@@ -49,6 +58,11 @@
             )
 
           ));
+
+          /*
+            If the $relatedProfessors variable, has any professors from the query above attached
+            to it then run the code below to  display them on the page.
+          */
 
           if ($relatedProfessors->have_posts()) {
             
@@ -80,6 +94,15 @@
           wp_reset_postdata();
 
 
+          /*
+            Reuse the WP_Query from the front page that queries the database
+            for upcoming events, however add another filter array to the 
+            meta query which will filter for events that has a key of ( 'related_programs' )
+            that matches the ID of the current program page that we are on.
+
+            Assign the results to $homepageEvents variable
+          */
+
 
           $today = date('Ymd');
           $homepageEvents = new WP_Query(array(
@@ -99,10 +122,15 @@
                 'key' => 'related_programs',
                 'compare' => 'LIKE',
                 'value' => '"' . get_the_ID() . '"'
-                )
+              )
             )
 
           ));
+
+           /*
+            If the $homepageEvents variable, has any events from the query above attached
+            to it then run the code below to  display them on the page.
+          */
 
            if ($homepageEvents->have_posts()) {
              

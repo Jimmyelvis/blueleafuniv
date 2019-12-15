@@ -1,5 +1,11 @@
 <?php 
 
+/*
+  Custom Rest API URL, for using custom search logic,
+  and using less data than the original url, and loads faster
+  using only the data properties that's needed for the search overlay
+*/
+
 add_action('rest_api_init', 'universityRegisterSearch');
 
 function universityRegisterSearch() {

@@ -1,28 +1,78 @@
 <?php get_header(); ?>
 
 
-  <div class="front-page-banner">
+  <div class="hero-slider">
 
-      <div class="front-page-banner__bg-image" style="background-image: url( <?php echo get_theme_file_uri('/images/studying.jpg') ?> );">
-      </div>
+     <!-- Custom slider for the home page. Query the database to see 
+          if any slides has been created from the dashboard, if yes then
+        display them -->
 
-      
+    <?php 
+      $homepageSlides = new WP_Query(array(
+        'post_type' => 'slider',
+        'orderby' => 'slide_order',
+        'order' => 'ASC',
+      ));
 
-      <div class="front-page-banner__content container t-center c-white">
-            <h1 class="headline headline--large">
-              <span class="headline headline--blueleaftxt"> BlueLeaf </span> University 
-            </h1>
-           
-    
-            <p>
-              We provides always our best educational services for our all students and  always try to achieve our students trust and satisfaction
-            </p>
-            
-            <a href="<?php echo get_post_type_archive_link('program'); ?>" class="btn btn--frontpage">Find Your Major</a>
+      while ($homepageSlides->have_posts()) { 
+        $homepageSlides->the_post();
+      ?>
+
+        <div class="hero-slider__slide" 
+        style="background-image: url(
+          <?php 
+              $slideImage = get_field('slider_image'); 
+              echo $slideImage; 
+          ?>
+          );">
+          <div class="hero-slider__interior container t-center">
+            <div class="hero-slider__overlay">
+              <h1 class="headline headline--large t-center"><?php the_field('slide_heading'); ?></h1>
+              <p class="t-center">
+                <?php the_field('slide_content'); ?>
+              </p>
+
+              
+              <!-- Check to see if an user entered any value in the ACF 
+              'slide_button_label' field if yes then check to see if a user 
+              has entered any value in the 'slide_link' field, if yes
+              add that value to the a tag attribute, else default to #
+              as the attr, then display the button -->
+
+              <?php if (get_field('slide_button_label')) { ?>
+
+                  <a 
+                    <?php 
+                      if (get_field('slide_link')) { ?>
+                       
+                       href="<?php the_field('slide_link') ?>" 
+                     
+                     <?php } else { ?>
+
+                      href="#" 
+                     
+                     <?php } ?>
+                    
+                    class="btn btn--frontpage">
+                    
+                      <?php 
+                        the_field('slide_button_label') 
+                      ?>
+                  </a>
+
+              <?php } ?>
+
+
+            </div>
+          </div>
         </div>
 
+      <?php } wp_reset_postdata() ?>
 
+   
   </div>
+
+ 
 
   <div class="selling-point">
 
@@ -81,6 +131,10 @@
 
       <div class="events container">
 
+            <!-- Check the database for any upcoming events and only
+          display events that have not occured yet. If the date has already passed
+            then the event gets moved to the archive page.-->
+
             <?php 
               $today = date('Ymd');
               $homepageEvents = new WP_Query(array(
@@ -92,7 +146,7 @@
                 'meta_query' => array(
                   array(
                     'key' => 'event_date',
-                    'compare' => '>=',
+                    'compare' => '>=', 
                     'value' => $today,
                     'type' => 'numeric'
                   )
@@ -121,14 +175,14 @@
 
   <h3>FROM OUR<span class="secHalfofWord"> BLOGS</span> </h3>
       
+        <!-- Check the database for any blog posts and display  
+              links to three of the most recent ones
+      -->
 
      
-
-      
        <div class="blogs container">
 
        <?php 
-              $today = date('Ymd');
               $pastblogevents = new WP_Query(array(
                 'posts_per_page' => 3,
                 'post_type' => 'post'
@@ -137,7 +191,6 @@
 
               while ($pastblogevents->have_posts()) {
                 $pastblogevents->the_post();
-                // get_template_part('template-parts/content', 'post');
                 ?>
 
                 <div class="column">
@@ -145,10 +198,7 @@
                   <div class="post-module hover">
                     <!-- Thumbnail-->
                     <div class="thumbnail">
-                      <!-- <div class="date">
-                        <div class="day">27</div>
-                        <div class="month">Mar</div>
-                      </div> -->
+                     
                       <img src="<?php the_post_thumbnail_url('professorLandscape') ?>" />
                     </div>
                     <!-- Post Content-->
@@ -173,99 +223,13 @@
 
   </div>
 
-  <!-- <div class="full-width-split group">
-    <div class="full-width-split__one">
-      <div class="full-width-split__inner">
-        <h2 class="headline headline--small-plus t-center">Upcoming Events</h2>
-
-        <?php 
-          $today = date('Ymd');
-          $homepageEvents = new WP_Query(array(
-            'posts_per_page' => 2,
-            'post_type' => 'event',
-            'meta_key' => 'event_date',
-            'orderby' => 'meta_value_num',
-            'order' => 'ASC',
-            'meta_query' => array(
-              array(
-                'key' => 'event_date',
-                'compare' => '>=',
-                'value' => $today,
-                'type' => 'numeric'
-              )
-            )
-
-          ));
-
-          while ($homepageEvents->have_posts()) {
-            $homepageEvents->the_post();
-            get_template_part('template-parts/content', 'event');
-          } 
-
-        ?>
-     
-        
-        <p class="t-center no-margin"><a href="<?php echo get_post_type_archive_link('event') ?>" class="btn btn--blue">View All Events</a></p>
-
-      </div>
-    </div>
-    <div class="full-width-split__two">
-      <div class="full-width-split__inner">
-        <h2 class="headline headline--small-plus t-center">From Our Blogs</h2>
-
-        <?php 
-
-          $homepagePosts = new WP_Query(array(
-            'posts_per_page' => 2
-          ));
-        
-          while ($homepagePosts->have_posts()) {
-            $homepagePosts->the_post(); ?>
-
-            <div class="event-summary">
-              <a class="event-summary__date event-summary__date--beige t-center" href="<?php the_permalink(); ?>">
-                <span class="event-summary__month"><?php the_time('M'); ?></span>
-                <span class="event-summary__day"><?php the_time('d'); ?></span>  
-              </a>
-              <div class="event-summary__content">
-                <h5 class="event-summary__title headline headline--tiny"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
-                <p>
-                  <?php 
-
-                    if (has_excerpt()) {
-                      echo get_the_excerpt();
-                    }else{
-                      echo wp_trim_words(get_the_content(), 18);
-                    }
-                  
-                  ?> 
-                
-                  <a href="<?php the_permalink(); ?>" class="nu gray">Read more</a>
-                
-                </p>
-              </div>
-            </div>
-           
-
-         <?php }  wp_reset_postdata(); 
-        ?>
-
-        
-
-
-        
-        <p class="t-center no-margin"><a href="<?php echo site_url('/blog'); ?> " class="btn btn--yellow">View All Blog Posts</a></p>
-      </div>
-    </div>
-  </div> -->
-
  
   <div class="subscribe">
 
       <div class="container">
             
           <div class="subscribemsg">
-              <p>Subscribe Newsletter for Get in Touch!</p>    
+              <p>Subscribe to our newsletter</p>    
           </div>
 
           <div class="subscribeInput">

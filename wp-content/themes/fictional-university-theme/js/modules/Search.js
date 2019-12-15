@@ -4,15 +4,26 @@ class Search {
 
     // 1. describe and create/initiate our object
   constructor(){
+
+    // Add the overlay to the dom once the page is loaded
     this.addSearchHTML();
+
     this.resultsDiv = $("#search-overlay__results");
     this.openButton = $(".js-search-trigger");
     this.closeButton = $(".search-overlay__close");
     this.searchOverlay = $(".search-overlay");
     this.searchField = $("#search-term");
+    
+    // Make sure the event listeners gets added to the page right away
     this.events();
+
+    // State variable to see of the search overlay is already open
     this.isOverlayOpen = false;
+
+    // State variable to see of the spinner is already visible
     this.isSpinnerVisible = false;
+
+    // Keep track of the previous serach value
     this.previousValue;
     this.typingTimer;
   }
@@ -29,6 +40,8 @@ class Search {
 
     typingLogic() {
 
+      // Prevent search calls from happening if the keystroke doesn't 
+      // actually change the input value
       if (this.searchField.val() != this.previousValue) {
 
         clearTimeout(this.typingTimer);
@@ -46,8 +59,6 @@ class Search {
             this.isSpinnerVisible = false;
         }
       
-      
-
       }
      
       this.previousValue = this.searchField.val();
@@ -153,15 +164,21 @@ class Search {
 
     keyPressDispatcher(e) {
 
+      // Use (S)key as a keyboard shortcut to open the search overlay, 
+      // as long as the overlay is not already open, ie (this.isOverlayOpen = false)
+      // and as long as no other inputs, or textarea in the page has focus
       if (e.keyCode == 83 && !this.isOverlayOpen && !$("input, textarea").is(':focus')) {
         this.openOverlay();
       }
 
+      // Use (ESC)key as a keyboard shortcut to close the search overlay
+      // as long as the overlay is currently open, ie (this.isOverlayOpen = true)
       if (e.keyCode == 27 && this.isOverlayOpen) {
         this.closeOverlay();
       }
     }
 
+    // Opens the overlay when the search icon is clicked
     openOverlay() {
       this.searchOverlay.addClass("search-overlay--active");
       $("body").addClass("body-no-scroll");
@@ -171,12 +188,15 @@ class Search {
       return false;
     }
 
+    // Closes the overlay when the close icon is clicked
     closeOverlay() {
       this.searchOverlay.removeClass("search-overlay--active");
       $("body").removeClass("body-no-scroll");
       this.isOverlayOpen = false;
     }
 
+
+    // Appends the search overlay to the html body
     addSearchHTML() {
       $("body").append(`
         <div class="search-overlay">

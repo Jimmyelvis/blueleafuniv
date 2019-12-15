@@ -35,8 +35,17 @@
 
           <?php 
 
+              /*
+                Get the field 'related_programs, and assign it to $relatedPrograms
+                If there's a value present for $relatedPrograms then that means
+                that this event has a related program, and we can display it below
+              */
+
               $relatedPrograms = get_field('related_programs');
 
+              // echo '<pre>';
+              // print_r($relatedPrograms);
+              // echo '</pre>';
             
              if ($relatedPrograms) {
 

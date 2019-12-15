@@ -10,7 +10,11 @@ class HeroSlider {
     this.els.slick({
       autoplay: true,
       arrows: false,
-      dots: true
+      dots: true,
+      speed: 1000,
+      fade: true,
+      autoplaySpeed : 5000,
+      cssEase: 'linear'
     });
   }
 }

@@ -3,16 +3,12 @@
 require get_theme_file_path('/inc/like-route.php');
 require get_theme_file_path('/inc/search-route.php');
 
-
+// Add custom fields to the WordPress API
 function university_custom_rest() {
 
   register_rest_field('post', 'authorName' , array(
     'get_callback' => function(){ return get_the_author();}
   ));
-
-  // register_rest_field('post', 'authorPic' , array(
-  //   'get_callback' => function(){ return get_avatar($id_or_email, $size, $default, $alt, $args);}
-  // ));
 
   register_rest_field('note', 'userNoteCount' , array(
     'get_callback' => function(){ return count_user_posts(get_current_user_id(), 'note');}
@@ -23,6 +19,8 @@ function university_custom_rest() {
 
 add_action('rest_api_init', 'university_custom_rest');
 
+
+/* This control the page banner that exists on most pages */
 function pageBanner($args = NULL) {
 
       if (!$args['title']) {
@@ -34,9 +32,17 @@ function pageBanner($args = NULL) {
       }
 
       if (!$args['photo']) {
+
         if (get_field('page_banner_background_image')) {
+
+          /* Check to see if an user has entered a value for a BG image for
+              the page banner, if yes use that image
+          */
           $args['photo'] = get_field('page_banner_background_image')['sizes']['pageBanner'];
+
         } else{
+
+          /* If no value was entered then default to this image */
           $args['photo'] = get_theme_file_uri('/images/building.jpg');
         }
       
@@ -87,6 +93,11 @@ function pageBanner($args = NULL) {
 
   add_action('wp_enqueue_scripts', 'univ_files');
 
+  /*
+    This is hooked onto 'after_setup_theme' and is used to enable
+    several features for this theme
+  */
+
   function university_features() {
 
     add_theme_support('post-thumbnails');
@@ -100,6 +111,12 @@ function pageBanner($args = NULL) {
 
   function university_adjust_queries($query) {
 
+    /*
+      First make sure that we are not the backend admin page "!is_admin()"
+      then make sure we are archive page for programs, then apply the query adjustments
+      below
+    */
+
     if (!is_admin() AND is_post_type_archive('program') AND $query->is_main_query()) {
 
       $query->set('orderby', 'title');
@@ -107,6 +124,12 @@ function pageBanner($args = NULL) {
       $query->set('posts_per_page', -1);
 
     }
+
+    /*
+      First make sure that we are not the backend admin page "!is_admin()"
+      then make sure we are archive page for events, then apply the query adjustments
+      below
+    */
 
     if (!is_admin() AND is_post_type_archive('event') AND $query->is_main_query()) {
       $today = date('Ymd');
@@ -126,6 +149,11 @@ function pageBanner($args = NULL) {
 
    
   }
+
+  /*
+    Hook onto the 'pre_get_posts' function, then the 'university_adjust_queries'
+    function above to make adjustments to Wordpress queries
+  */
 
   add_action('pre_get_posts', 'university_adjust_queries');
 

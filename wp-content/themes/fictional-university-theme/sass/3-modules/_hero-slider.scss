@@ -11,69 +11,95 @@
     padding-bottom: 60px;
 
     @media (min-width: 960px) {
-      padding-top: 130px;
-      padding-bottom: 130px;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    h1 {
+      color: $babyBlue;
+    }
+
+    p {
+      font-size: 1.1rem;
+      width: 70%;
+      text-align: center;
+      margin: 5px auto 65px auto;
+      font-family: 'Clear Sans', sans-serif;
+
+      @media (max-width: 550px) {
+        width: 80%;
+        font-size: 1rem;
+      }
+
     }
   }
 
   .hero-slider__slide {
     background-size: cover;
     background-repeat: no-repeat;
+
+    .container {
+      max-width: 100%;
+      max-height: 100%;
+      padding: 0;
+    }
   }
 
   .hero-slider__overlay {
     margin: 0 auto;
-    background-color: rgba(0, 0, 0, .68);
-    padding: 40px;
+    background-color: rgba(43, 67, 112, 0.65);
+    padding-top: 210px;
     color: #FFF;
     @media (min-width: 960px) {
-      width: 50%;
+      width: 100%;
     }
   }
 
 }
 
-.slick-dots {
-  z-index: 100;
-  position: absolute;
-  left: 0;
-  right: 0;
-  padding: 0;
-  margin: 0;
-  text-align: center;
-  top: 15px;
-  @media (min-width: 960px) {
-    top: 50px;
-  }
-}
+// .slick-dots {
 
-.slick-dots {
+//   z-index: 100;
+//   position: absolute;
+//   left: 95%;
+//   right: 0;
+//   padding: 0;
+//   margin: 0;
+//   // text-align: center;
+//   top: 15px;
+//   @media (min-width: 960px) {
+//     top: 50px;
+//   }
+  
+// }
 
-  li {
-    list-style: none;
-    display: inline;
-  }
+// .slick-dots {
 
-  li button {
-    display: inline-block;
-    text-indent: -9999px;
-    font-size: 0;
-    line-height: 0;
-    width: 10px;
-    height: 10px;
-    background-color: rgba(255, 255, 255, .5);
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, .25);
-    border-radius: 50%;
-    border: none;
-    margin: 0 4px;
-    padding: 0;
-    outline: none;
-    transition: background-color .3s ease-out;
-    cursor: pointer;
-  }
+//   li {
+//     list-style: none;
+//     display: block;
+//   }
 
-  .slick-active button {
-    background-color: #FFF;
-  }
+//   li button {
+//     display: inline-block;
+//     text-indent: -9999px;
+//     font-size: 0;
+//     line-height: 0;
+//     width: 10px;
+//     height: 10px;
+//     background-color: rgba(255, 255, 255, .5);
+//     box-shadow: 1px 1px 1px rgba(0, 0, 0, .25);
+//     border-radius: 50%;
+//     border: none;
+//     margin: 0 4px;
+//     padding: 0;
+//     outline: none;
+//     transition: background-color .3s ease-out;
+//     cursor: pointer;
+//   }
 
-}
+//   .slick-active button {
+//     background-color: #FFF;
+//   }
+
+// }
